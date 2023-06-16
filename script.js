@@ -13,7 +13,7 @@ const formulario = document.getElementById('formularioSuscripcion');
 // Manejador de evento para el envío del formulario
 formulario.addEventListener('submit', function(event) {
   event.preventDefault(); // Evitar que se envíe el formulario
-  //formulario.reset(); // Reiniciar el formulario a su estado predeterminado
+  
 
   // Obtener los valores ingresados por el usuario
   const nombre = document.getElementById('nombre').value;
@@ -25,6 +25,10 @@ formulario.addEventListener('submit', function(event) {
 
   // Utilizar el objeto creado
   console.log(cliente);
+
+  formulario.reset(); // Reiniciar el formulario a su estado predeterminado
 });
+
+
 
 
