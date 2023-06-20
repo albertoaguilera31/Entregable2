@@ -1,13 +1,10 @@
-// Obtener referencia al formulario
+//OBTENER REFERENCIA AL FORMULARIO CON USO DEL DOM, ARRAYS Y BUCLE FOR
+
 const formulario = document.getElementById('formularioSuscripcion');
-
-// Obtener referencia al select de opciones
 const opcionesSelect = document.getElementById('opciones');
-
-// Crear un array de opciones
 const opciones = ['Legionario', 'Espartano', 'Tercio', 'Navy Seal'];
 
-// Generar las opciones de suscripción dinámicamente
+// Generar las opciones de suscripción dinámicamente con bucle for
 for (let i = 0; i < opciones.length; i++) {
   const opcion = document.createElement('option');
   opcion.value = opciones[i];
@@ -15,9 +12,10 @@ for (let i = 0; i < opciones.length; i++) {
   opcionesSelect.appendChild(opcion);
 }
 
-// Manejador de evento para el envío del formulario
+// EVENTOS ASOCIADOS AL FORMULARIO CON USO DE OBJETOS, CLASES y ESTRUCTURA DE CONTROL IF
+
 formulario.addEventListener('submit', function(event) {
-  event.preventDefault(); // Evitar que se envíe el formulario
+  event.preventDefault();
 
   class Cliente {
     constructor(nombre, apellido, edad, opcionCliente) {
@@ -35,48 +33,28 @@ formulario.addEventListener('submit', function(event) {
   const opcionCliente = opcionesSelect.value;
 
   //MENSAJE DE ERROR EN CASO DE SER MENOR DE EDAD
-  // Obtener referencia al elemento contenedor donde se mostrará el mensaje
+
   const contenedorMensaje = document.getElementById('contenedor-mensaje');
 
-  // Verificar si la edad es menor de 18 años con condicional if
   if (edad < 18) {
-  // Crear un nuevo elemento de párrafo
   const mensajeElemento = document.createElement('p');
-
-  // Establecer el contenido de texto del mensaje
   mensajeElemento.textContent = 'Debes ser mayor de 18 años para acceder.';
-
-  // Establecer el color del texto
   mensajeElemento.style.color = 'red';
-
   contenedorMensaje.innerHTML = '';
-
-  // Agregar el elemento al contenedor
   contenedorMensaje.appendChild(mensajeElemento);
-
   }else{
-  // Crear un nuevo elemento de párrafo
   const mensajeElemento = document.createElement('p');
-
-  // Establecer el contenido de texto del mensaje
   mensajeElemento.textContent = '¡Bienvenido al Warriors Box, futuro guerrero!';
   mensajeElemento.style.color = '#53D106';
 
   contenedorMensaje.innerHTML = '';
 
-  // Agregar el elemento al contenedor
   contenedorMensaje.appendChild(mensajeElemento);
-
-  // Realizar acciones con los valores ingresados
   const cliente = new Cliente(nombre, apellido, edad, opcionCliente);
-
-  //console.log(cliente);
 
   //USO DE JSON Y DE LOCALSTORAGE PARA MANEJAR LOS DATOS OBTENIDOS DEL FORMULARIO
 
   const formularioJson = JSON.stringify(cliente);
-
-  // Almacenar en el Localstorage el archivo JSON
   localStorage.setItem('formularioData', formularioJson);
  
     //RECUPERAR DATOS DEL LOCALSTORAGE CON BOTON DE HTML
@@ -85,10 +63,9 @@ formulario.addEventListener('submit', function(event) {
     const recuperarData = localStorage.getItem('formularioData');
     const mostrarDataJson = JSON.parse(recuperarData);
 
-    // GENERAR CODIGO DE SUSCRIPCIÓN INDIVIDUAL PARA EL CLIENTE
-    // Verificar si ya existe un código de suscripción para el cliente
-    let codigoSuscripcion = localStorage.getItem('codigoSuscripcion');
+    // GENERAR CODIGO DE SUSCRIPCIÓN INDIVIDUAL E INDIVIDUAL PARA EL CLIENTE
   
+    let codigoSuscripcion = localStorage.getItem('codigoSuscripcion');
     if (!codigoSuscripcion) {
     codigoSuscripcion = generarCodigoAleatorio();
     localStorage.setItem('codigoSuscripcion', codigoSuscripcion);
@@ -96,8 +73,6 @@ formulario.addEventListener('submit', function(event) {
     
     // Referenciar el contenedor de datos en HTML
     const contenedorDatos = document.getElementById('contenedor-datos');
-  
-    // Mostrar los datos en el contenedor
     contenedorDatos.innerHTML = `
     Nombre: ${mostrarDataJson.nombre} <br>
     Apellido: ${mostrarDataJson.apellido} <br>
@@ -123,7 +98,7 @@ formulario.addEventListener('submit', function(event) {
 
     generarCodigoAleatorio();
 
-    //Función para borrar el localstorage usando boton de HTML
+    //FUNCIÓN PARA BORRAR EL LOCALSTORAGE USANDO BOTON DE HTML
     function borrarLocalStorage() {
       localStorage.clear();
 
@@ -148,7 +123,7 @@ formulario.addEventListener('submit', function(event) {
     
   }
 
-  formulario.reset(); // Reiniciar el formulario a su estado predeterminado
+  formulario.reset(); // Reiniciar el formulario
 });
 
   
