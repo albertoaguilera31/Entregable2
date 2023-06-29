@@ -127,8 +127,75 @@ formulario.addEventListener('submit', function(event) {
 });
 
   
-  
+  //CODIGO PARA INCLUIR PETICIONES FETCH Y UN ARCHIVO JSON
+/*
+formulario.addEventListener('submit', async function(event) {
+  event.preventDefault();
 
+  const nombre = document.getElementById('nombre').value;
+  const apellido = document.getElementById('apellido').value;
+  const edad = parseInt(document.getElementById('edad').value);
+  const opcionCliente = opcionesSelect.value;
+
+  const contenedorMensaje = document.getElementById('contenedor-mensaje');
+
+  if (edad < 18) {
+    const mensajeElemento = document.createElement('p');
+    mensajeElemento.textContent = 'Debes ser mayor de 18 años para acceder.';
+    mensajeElemento.style.color = 'red';
+    contenedorMensaje.innerHTML = '';
+    contenedorMensaje.appendChild(mensajeElemento);
+  } else {
+    const mensajeElemento = document.createElement('p');
+    mensajeElemento.textContent = '¡Bienvenido al Warriors Box, futuro guerrero!';
+    mensajeElemento.style.color = '#53D106';
+
+    contenedorMensaje.innerHTML = '';
+    contenedorMensaje.appendChild(mensajeElemento);
+
+    const cliente = new Cliente(nombre, apellido, edad, opcionCliente);
+
+    const formularioJson = JSON.stringify(cliente);
+
+    try {
+      const response = await fetch('ruta-al-archivo.json', {
+        method: 'POST',
+        body: formularioJson,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Manipula los datos JSON recibidos
+        console.log('Respuesta del servidor:', data);
+      } else {
+        throw new Error('Error al enviar los datos');
+      }
+    } catch (error) {
+      console.error('Error de red:', error);
+    }
+
+    const codigoSuscripcion = generarCodigoAleatorio();
+    localStorage.setItem('codigoSuscripcion', codigoSuscripcion);
+
+    const contenedorDatos = document.getElementById('contenedor-datos');
+    contenedorDatos.innerHTML = `
+      Nombre: ${nombre} <br>
+      Apellido: ${apellido} <br>
+      Edad: ${edad} <br>
+      Suscripción seleccionada: ${opcionCliente} <br>
+      <p>Código de Suscripción: <span id="codigoSuscripcion">${codigoSuscripcion}</span></p>
+    `;
+  }
+
+  formulario.reset();
+});
+
+
+
+*/
   
 
 
